@@ -211,7 +211,7 @@ class _BtnGrafTemp extends StatelessWidget {
 }
 
 class _TempActual extends StatelessWidget {
-  final String ? fechaActual;
+  final String? fechaActual;
   final tempsProvider = TemperaturasProviders();
   _TempActual({this.fechaActual});
   @override
@@ -262,7 +262,7 @@ class _FondoMenu extends StatelessWidget {
 
 //Container centro temp
 class _TempContenedor extends StatelessWidget {
-  final String ? fechaActual;
+  final String? fechaActual;
   final double? tempActual;
   final String? fechaTemps;
   _TempContenedor({this.tempActual, this.fechaTemps, this.fechaActual});
@@ -288,7 +288,13 @@ class _TempContenedor extends StatelessWidget {
                 'Compruebe el estado del sensor',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
-            )
+            ),
+          SizedBox(height: 30.0),
+          _StatusTemperatura(
+            temperatura: tempActual,
+            fechaActual: fechaActual,
+            fechaTemps: fechaTemps,
+          )
         ],
       ),
     );
@@ -424,6 +430,117 @@ class _TempCritica extends StatelessWidget {
             ],
           ),
         )
+      ],
+    );
+  }
+}
+
+class _StatusTemperatura extends StatelessWidget {
+  final double? temperatura;
+  final String? fechaActual;
+  final String? fechaTemps;
+  _StatusTemperatura({this.temperatura, this.fechaActual, this.fechaTemps});
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        if (temperatura! < 27 && fechaTemps == fechaActual)
+          Column(
+            children: [
+              Row(
+                children: [
+                  CirculosStatus(color: Colors.green[600]),
+                  CirculosStatus(),
+                  CirculosStatus(),
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 250.0,
+                child: Text(
+                  'Temperatura Óptima',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+                ),
+              )
+            ],
+          )
+        else if (temperatura! > 27 &&
+            temperatura! < 28 &&
+            fechaTemps == fechaActual)
+          Column(
+            children: [
+              Row(
+                children: [
+                  CirculosStatus(),
+                  CirculosStatus(color: Colors.yellow),
+                  CirculosStatus(),
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 250.0,
+                child: Text(
+                  'Temperatura en Alerta',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+                ),
+              )
+            ],
+          )
+        else if (temperatura! > 28 && fechaTemps == fechaActual)
+          Column(
+            children: [
+              Row(
+                children: [
+                  CirculosStatus(),
+                  CirculosStatus(),
+                  CirculosStatus(color: Colors.red),
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 250.0,
+                child: Text(
+                  'Temperatura Crítica',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+                ),
+              )
+            ],
+          )
+      ],
+    );
+  }
+}
+
+class CirculosStatus extends StatelessWidget {
+  final Color? color;
+  CirculosStatus({this.color});
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 5.0, right: 5.0),
+          height: 90.0,
+          width: 90.0,
+          decoration: BoxDecoration(
+              color: Colors.grey, borderRadius: BorderRadius.circular(100.0)),
+        ),
+        Container(
+          height: 70.0,
+          width: 70.0,
+          decoration: BoxDecoration(
+              color: color, borderRadius: BorderRadius.circular(100.0)),
+        ),
       ],
     );
   }
