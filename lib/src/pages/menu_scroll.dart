@@ -76,14 +76,7 @@ class _BotonesNav extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color.fromRGBO(131, 175, 235, 1),
-            Color.fromRGBO(153, 153, 153, 1)
-          ],
-        ),
+        color: Color.fromRGBO(88, 170, 224, 1)
       ),
       child: Center(
         child: Container(
@@ -96,8 +89,7 @@ class _BotonesNav extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(
-                        'https://scontent.fmxl1-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/218083271_403458621095955_6251887432281665556_n.png?_nc_cat=104&ccb=1-3&_nc_sid=ae9488&_nc_ohc=6zOl6ukmTJkAX-WKHLG&_nc_ht=scontent.fmxl1-1.fna&oh=afe46b9e8ec956f3c371ffbf39df90c7&oe=60FCEDAF'),
+                    image: AssetImage('assets/cloudtemp.png'),
                   ),
                 ),
               ),
@@ -140,8 +132,7 @@ class _BtnRegTemp extends StatelessWidget {
                     CircleAvatar(
                       radius: 34.0,
                       backgroundColor: Colors.white,
-                      backgroundImage: NetworkImage(
-                          'https://scontent.fmxl1-1.fna.fbcdn.net/v/t1.15752-9/p1080x2048/217750793_512174956725523_1895438781630908219_n.png?_nc_cat=105&ccb=1-3&_nc_sid=ae9488&_nc_ohc=bJFGZFB3T6MAX_7OXR1&_nc_ht=scontent.fmxl1-1.fna&oh=1d653d26b477edc63a1c733508237b9d&oe=60FDCAA3'),
+                      backgroundImage: AssetImage('assets/sol.png'),
                     ),
                     SizedBox(
                       height: 15,
@@ -187,8 +178,7 @@ class _BtnGrafTemp extends StatelessWidget {
                     CircleAvatar(
                       radius: 34.0,
                       backgroundColor: Colors.white,
-                      backgroundImage: NetworkImage(
-                          'https://scontent.fmxl1-1.fna.fbcdn.net/v/t1.15752-9/p1080x2048/217703423_1513223692363187_4316509888885426142_n.png?_nc_cat=101&ccb=1-3&_nc_sid=ae9488&_nc_ohc=mfWFsgZB2K0AX8B7Tgb&_nc_ht=scontent.fmxl1-1.fna&oh=7dd5bf1328974e7c109d0146e0b10a76&oe=60FE1834'),
+                      backgroundImage: AssetImage('assets/sol.png'),
                     ),
                     SizedBox(
                       height: 15,
@@ -247,14 +237,7 @@ class _FondoMenu extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color.fromRGBO(131, 175, 235, 1),
-            Color.fromRGBO(153, 153, 153, 1)
-          ],
-        ),
+        color: Color.fromRGBO(88, 170, 224, 1)
       ),
     );
   }
