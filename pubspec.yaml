@@ -32,6 +32,7 @@ dependencies:
   intl:
   dio:
   get:
+  instant:
 
 dev_dependencies:
   flutter_test:

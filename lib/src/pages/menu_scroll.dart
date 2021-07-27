@@ -4,6 +4,7 @@ import 'package:integradora_oficial/src/providers/temp_provider.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:instant/instant.dart';
 
 class MenuScroll extends StatelessWidget {
   @override
@@ -24,11 +25,13 @@ class MenuScroll extends StatelessWidget {
 ////////// EMPIEZA PRIMERA INTERFAZ MENU TEMP \\\\\\\\\\\\
 class _MenuTemp extends StatelessWidget {
   final DateTime now = DateTime.now();
+  //library instant
+  final DateTime eastCoast = dateTimeToZone(zone: "PDT", datetime: DateTime.now());
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   @override
   Widget build(BuildContext context) {
-    final String formatted = formatter.format(now);
-
+    final String formatted = formatter.format(eastCoast);
+    //print(formatted + " / " + eastCoast.toString());
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,

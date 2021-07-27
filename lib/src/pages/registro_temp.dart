@@ -139,10 +139,8 @@ class _DividerVertical extends StatelessWidget {
 }
 
 class _GetTempsFutureB extends StatelessWidget {
-  //final String ? value;
   final tempsProvider = TemperaturasProviders();
   final TextStyle estilo = TextStyle(fontSize: 18);
-  //_GetTempsFutureB({this.value});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -160,7 +158,6 @@ class _GetTempsFutureB extends StatelessWidget {
                 itemBuilder: (BuildContext context, int i) {
                   //temps
                   final tempsData = temps[i];
-                  //items.add(tempsData.fecha!);
                   return Column(
                     children: [
                       Divider(),
