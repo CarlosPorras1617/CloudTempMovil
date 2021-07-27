@@ -10,7 +10,7 @@ class TemperaturasProviders{
     final response = await http.get(_url);
     List<dynamic> responseData = response.data;
     //trae la ultima temperatura registrada
-    print(responseData.last['temperatura']);
+    //print(responseData.last['temperatura']);
     return responseData.map((data)=> TemperaturasModel.fromMapJson(data)).toList();
   }
 }
