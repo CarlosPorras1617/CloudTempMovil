@@ -322,8 +322,8 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
                             )
-                          else if (tempsData.temperatura! > 27 &&
-                              tempsData.temperatura! < 28)
+                          else if (tempsData.temperatura! >= 27 &&
+                              tempsData.temperatura! <= 28)
                             Text(
                               'ALERTA',
                               style: TextStyle(

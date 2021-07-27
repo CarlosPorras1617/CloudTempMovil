@@ -26,7 +26,8 @@ class MenuScroll extends StatelessWidget {
 class _MenuTemp extends StatelessWidget {
   final DateTime now = DateTime.now();
   //library instant
-  final DateTime eastCoast = dateTimeToZone(zone: "PDT", datetime: DateTime.now());
+  final DateTime eastCoast =
+      dateTimeToZone(zone: "PDT", datetime: DateTime.now());
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   @override
   Widget build(BuildContext context) {
@@ -78,9 +79,7 @@ class _BotonesNav extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(88, 170, 224, 1)
-      ),
+      decoration: BoxDecoration(color: Color.fromRGBO(88, 170, 224, 1)),
       child: Center(
         child: Container(
           width: _mediaSize.height * 0.25,
@@ -88,7 +87,7 @@ class _BotonesNav extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 200,
+                height: _mediaSize.height * 0.3,
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -99,7 +98,7 @@ class _BotonesNav extends StatelessWidget {
 
               ///// BOTONES DE NAVEGACION //////
               _BtnRegTemp(),
-              SizedBox(height: 20),
+              SizedBox(height: _mediaSize.height * 0.05),
               _BtnGrafTemp(),
               ///// BOTONES DE NAVEGACION //////
             ],
@@ -115,6 +114,7 @@ class _BotonesNav extends StatelessWidget {
 class _BtnRegTemp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/RegTemp');
@@ -124,7 +124,7 @@ class _BtnRegTemp extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         color: Color.fromRGBO(252, 96, 100, 1.0),
         child: Container(
-          margin: EdgeInsets.all(20.0),
+          margin: EdgeInsets.all(_mediaSize.height * 0.03),
           child: Stack(
             clipBehavior: Clip.none,
             children: [
@@ -133,12 +133,12 @@ class _BtnRegTemp extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 34.0,
+                      radius: _mediaSize.width * 0.1,
                       backgroundColor: Colors.white,
                       backgroundImage: AssetImage('assets/sol.png'),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: _mediaSize.height * 0.02,
                     ),
                     Text(
                       'Registro de Temperaturas',
@@ -161,6 +161,7 @@ class _BtnRegTemp extends StatelessWidget {
 class _BtnGrafTemp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/GrafTemp');
@@ -170,7 +171,7 @@ class _BtnGrafTemp extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         color: Color.fromRGBO(252, 96, 100, 1.0),
         child: Container(
-          margin: EdgeInsets.all(20.0),
+          margin: EdgeInsets.all(_mediaSize.height * 0.03),
           child: Stack(
             clipBehavior: Clip.none,
             children: [
@@ -179,7 +180,7 @@ class _BtnGrafTemp extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 34.0,
+                      radius: _mediaSize.width * 0.1,
                       backgroundColor: Colors.white,
                       backgroundImage: AssetImage('assets/sol.png'),
                     ),
@@ -239,9 +240,7 @@ class _FondoMenu extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(88, 170, 224, 1)
-      ),
+      decoration: BoxDecoration(color: Color.fromRGBO(88, 170, 224, 1)),
     );
   }
 }
@@ -254,9 +253,10 @@ class _TempContenedor extends StatelessWidget {
   _TempContenedor({this.tempActual, this.fechaTemps, this.fechaActual});
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return Container(
-      height: 350.0,
-      width: 300.0,
+      height: _mediaSize.height * 0.5,
+      width: _mediaSize.width * 0.764,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(60),
@@ -265,7 +265,7 @@ class _TempContenedor extends StatelessWidget {
         children: [
           if (tempActual! < 27 && fechaTemps == fechaActual)
             _TempOptima(temp: tempActual)
-          else if (tempActual! > 27 && fechaTemps == fechaActual)
+          else if (tempActual! >= 27 && fechaTemps == fechaActual)
             _TempCritica(temp: tempActual)
           else if (fechaTemps != fechaActual)
             Container(
@@ -275,7 +275,7 @@ class _TempContenedor extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
             ),
-          SizedBox(height: 30.0),
+          SizedBox(height: _mediaSize.height * 0.04),
           _StatusTemperatura(
             temperatura: tempActual,
             fechaActual: fechaActual,
@@ -292,11 +292,12 @@ class _TempOptima extends StatelessWidget {
   _TempOptima({this.temp});
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return Row(
       children: [
         Container(
-          height: 100.0,
-          width: 200.0,
+          height: _mediaSize.height * 0.132,
+          width: _mediaSize.width * 0.509,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(60)),
             color: Colors.blue[800],
@@ -304,21 +305,21 @@ class _TempOptima extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 20.0,
+                height: _mediaSize.height * 0.02,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: 20.0,
+                    width: _mediaSize.width * 0.04,
                   ),
                   Image.asset(
                     'assets/colder.png',
-                    height: 70.0,
+                    height: _mediaSize.height * 0.09,
                     color: Colors.blue,
                     fit: BoxFit.cover,
                   ),
                   SizedBox(
-                    width: 10.0,
+                    width: _mediaSize.width * 0.04,
                   ),
                   Text(
                     "${temp.toString()} C°",
@@ -330,8 +331,8 @@ class _TempOptima extends StatelessWidget {
           ),
         ),
         Container(
-          height: 100.0,
-          width: 100.0,
+          height: _mediaSize.height * 0.132,
+          width: _mediaSize.width * 0.255,
           decoration: BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.only(
@@ -341,7 +342,7 @@ class _TempOptima extends StatelessWidget {
           child: Center(
               child: Image.asset(
             'assets/sol.png',
-            height: 70.0,
+            height: _mediaSize.height * 0.09,
             fit: BoxFit.cover,
           )),
         )
@@ -355,11 +356,12 @@ class _TempCritica extends StatelessWidget {
   _TempCritica({this.temp});
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return Row(
       children: [
         Container(
-          height: 100.0,
-          width: 100.0,
+          height: _mediaSize.height * 0.132,
+          width: _mediaSize.width * 0.254,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(60)),
             color: Colors.grey,
@@ -367,16 +369,16 @@ class _TempCritica extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 20.0,
+                height: _mediaSize.height * 0.02,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: 20.0,
+                    width: _mediaSize.width * 0.04,
                   ),
                   Image.asset(
                     'assets/colder.png',
-                    height: 70.0,
+                    height: _mediaSize.height * 0.09,
                     fit: BoxFit.cover,
                   ),
                 ],
@@ -385,8 +387,8 @@ class _TempCritica extends StatelessWidget {
           ),
         ),
         Container(
-          height: 100.0,
-          width: 200.0,
+          height: _mediaSize.height * 0.132,
+          width: _mediaSize.width * 0.51,
           decoration: BoxDecoration(
             color: Colors.red[800],
             borderRadius: BorderRadius.only(
@@ -396,19 +398,19 @@ class _TempCritica extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: 10.0,
+                width: _mediaSize.width * 0.04,
               ),
               Text(
                 "${temp.toString()} C°",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               SizedBox(
-                width: 10.0,
+                width: _mediaSize.width * 0.04,
               ),
               Center(
                 child: Image.asset(
                   'assets/sol.png',
-                  height: 70.0,
+                  height: _mediaSize.height * 0.1,
                   color: Colors.red,
                   fit: BoxFit.cover,
                 ),
@@ -428,6 +430,7 @@ class _StatusTemperatura extends StatelessWidget {
   _StatusTemperatura({this.temperatura, this.fechaActual, this.fechaTemps});
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return Row(
       children: [
         if (temperatura! < 27 && fechaTemps == fechaActual)
@@ -440,9 +443,9 @@ class _StatusTemperatura extends StatelessWidget {
                   CirculosStatus(),
                 ],
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: _mediaSize.height * 0.03),
               Container(
-                width: 250.0,
+                width: _mediaSize.width * 0.5,
                 child: Text(
                   'Temperatura Óptima',
                   textAlign: TextAlign.center,
@@ -453,8 +456,8 @@ class _StatusTemperatura extends StatelessWidget {
               )
             ],
           )
-        else if (temperatura! > 27 &&
-            temperatura! < 28 &&
+        else if (temperatura! >= 27 &&
+            temperatura! <= 28 &&
             fechaTemps == fechaActual)
           Column(
             children: [
@@ -465,9 +468,9 @@ class _StatusTemperatura extends StatelessWidget {
                   CirculosStatus(),
                 ],
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: _mediaSize.height * 0.03),
               Container(
-                width: 250.0,
+                width: _mediaSize.width * 0.6,
                 child: Text(
                   'Temperatura en Alerta',
                   textAlign: TextAlign.center,
@@ -488,9 +491,9 @@ class _StatusTemperatura extends StatelessWidget {
                   CirculosStatus(color: Colors.red),
                 ],
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: _mediaSize.height * 0.03),
               Container(
-                width: 250.0,
+                width: _mediaSize.width * 0.5,
                 child: Text(
                   'Temperatura Crítica',
                   textAlign: TextAlign.center,
@@ -511,21 +514,27 @@ class CirculosStatus extends StatelessWidget {
   CirculosStatus({this.color});
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
         Container(
-          margin: EdgeInsets.only(left: 5.0, right: 5.0),
-          height: 90.0,
-          width: 90.0,
+          margin: EdgeInsets.only(
+              left: _mediaSize.width * 0.015, right: _mediaSize.width * 0.013),
+          height: _mediaSize.height * 0.12,
+          width: _mediaSize.width * 0.226,
           decoration: BoxDecoration(
-              color: Colors.grey, borderRadius: BorderRadius.circular(100.0)),
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(100.0),
+          ),
         ),
         Container(
-          height: 70.0,
-          width: 70.0,
+          height: _mediaSize.height * 0.09,
+          width: _mediaSize.width * 0.17,
           decoration: BoxDecoration(
-              color: color, borderRadius: BorderRadius.circular(100.0)),
+            color: color,
+            borderRadius: BorderRadius.circular(100.0),
+          ),
         ),
       ],
     );
