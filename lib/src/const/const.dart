@@ -1,0 +1,1 @@
+export 'package:integradora_oficial/src/const/temps_const.dart';

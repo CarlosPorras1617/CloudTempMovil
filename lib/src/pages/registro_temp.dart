@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:integradora_oficial/src/models/temp_model.dart';
 import 'package:integradora_oficial/src/providers/temp_provider.dart';
+import 'package:integradora_oficial/src/const/const.dart';
 
 class RegTemp extends StatefulWidget {
   RegTempState createState() => RegTempState();
@@ -154,66 +155,66 @@ class _GetTempsFutureB extends StatelessWidget {
             margin: EdgeInsets.only(top: 200.0),
             child: Card(
               child: ListView.builder(
-                itemCount: temps!.length,
-                itemBuilder: (BuildContext context, int i) {
-                  //temps
-                  final tempsData = temps[i];
-                  return Column(
-                    children: [
-                      Divider(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            tempsData.fecha!,
-                            style: estilo,
-                          ),
-                          _DividerVertical(),
-                          Text(
-                            tempsData.hora!,
-                            style: estilo,
-                          ),
-                          _DividerVertical(),
-                          Text(
-                            "${tempsData.temperatura!.toString()} C°",
-                            style: estilo,
-                          ),
-                          _DividerVertical(),
-                          if (tempsData.temperatura! < 27)
+                  itemCount: temps!.length,
+                  itemBuilder: (BuildContext context, int i) {
+                    //temps
+                    final tempsData = temps[i];
+                    return Column(
+                      children: [
+                        Divider(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
                             Text(
-                              'ÓPTIMA',
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          else if (tempsData.temperatura! > 27 &&
-                              tempsData.temperatura! < 28)
+                              tempsData.fecha!,
+                              style: estilo,
+                            ),
+                            _DividerVertical(),
                             Text(
-                              'ALERTA',
-                              style: TextStyle(
-                                  color: Colors.yellow,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          else if (tempsData.temperatura! > 28)
+                              tempsData.hora!,
+                              style: estilo,
+                            ),
+                            _DividerVertical(),
                             Text(
-                              'CRÍTICO',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                        ],
-                      ),
-                    ],
-                  );
-                },
+                              "${tempsData.temperatura!.toString()} C°",
+                              style: estilo,
+                            ),
+                            _DividerVertical(),
+                            if (tempsData.temperatura! <= TemperaturasValues.tempOptima)
+                              Text(
+                                'ÓPTIMA',
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              )
+                            else if (tempsData.temperatura! > TemperaturasValues.tempOptima &&
+                                tempsData.temperatura! <= TemperaturasValues.tempCritica)
+                              Text(
+                                'ALERTA',
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              )
+                            else if (tempsData.temperatura! > TemperaturasValues.tempCritica)
+                              Text(
+                                'CRÍTICO',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              )
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
-          );
+            );
         }
-        return CircularProgressIndicator();
+        return Center(child:CircularProgressIndicator(color: Colors.white,));
       },
     );
   }

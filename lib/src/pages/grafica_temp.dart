@@ -5,6 +5,7 @@ import 'package:integradora_oficial/src/providers/indicator_provider.dart';
 import 'package:integradora_oficial/src/providers/temp_provider.dart';
 import 'package:instant/instant.dart';
 import 'package:intl/intl.dart';
+import 'package:integradora_oficial/src/const/const.dart';
 //grafica
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
@@ -56,6 +57,7 @@ class _GrafTempState extends State {
                 AsyncSnapshot<List<TemperaturasModel>> snap) {
               if (snap.hasData) {
                 final temps = snap.data;
+                //ciclamos para obtener cada una de las temperaturas registradas y la cantidad en base a la fecha de hoy
                 for (var i = 0; i < temps!.length; i++) {
                   if (temps[i].temperaturaMedia! != 0 &&
                       temps[i].fecha! == formatted) {
@@ -293,7 +295,7 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
                 itemBuilder: (BuildContext context, int i) {
                   //temps
                   final tempsData = temps[i];
-                  return (tempsData.fecha! == fechaActual && tempsData.temperatura! > 27) ? Column(
+                  return (tempsData.fecha! == fechaActual && tempsData.temperatura! >= TemperaturasValues.tempOptima) ? Column(
                     children: [
                       Divider(),
                       Row(
@@ -314,16 +316,8 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
                             style: estilo,
                           ),
                           _DividerVertical(),
-                          if (tempsData.temperatura! < 27)
-                            Text(
-                              'ÓPTIMA',
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          else if (tempsData.temperatura! >= 27 &&
-                              tempsData.temperatura! <= 28)
+                          if (tempsData.temperatura! >= TemperaturasValues.tempAlerta &&
+                              tempsData.temperatura! <= TemperaturasValues.tempCritica)
                             Text(
                               'ALERTA',
                               style: TextStyle(
@@ -331,7 +325,7 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
                             )
-                          else if (tempsData.temperatura! > 28)
+                          else if (tempsData.temperatura! >= TemperaturasValues.tempCritica)
                             Text(
                               'CRÍTICO',
                               style: TextStyle(
@@ -348,7 +342,10 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
             ),
           );
         }
-        return CircularProgressIndicator();
+        return Padding(
+          padding: EdgeInsets.only(top: 30.0),
+          child: Center(child: CircularProgressIndicator(color: Colors.white,)),
+        );
       },
     );
   }

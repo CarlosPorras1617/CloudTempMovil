@@ -5,6 +5,7 @@ import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:instant/instant.dart';
+import 'package:integradora_oficial/src/const/const.dart';
 
 class MenuScroll extends StatelessWidget {
   @override
@@ -135,7 +136,7 @@ class _BtnRegTemp extends StatelessWidget {
                     CircleAvatar(
                       radius: _mediaSize.width * 0.1,
                       backgroundColor: Colors.white,
-                      backgroundImage: AssetImage('assets/sol.png'),
+                      backgroundImage: AssetImage('assets/temperatura.png'),
                     ),
                     SizedBox(
                       height: _mediaSize.height * 0.02,
@@ -182,7 +183,7 @@ class _BtnGrafTemp extends StatelessWidget {
                     CircleAvatar(
                       radius: _mediaSize.width * 0.1,
                       backgroundColor: Colors.white,
-                      backgroundImage: AssetImage('assets/sol.png'),
+                      backgroundImage: AssetImage('assets/grafica.png'),
                     ),
                     SizedBox(
                       height: 15,
@@ -227,7 +228,11 @@ class _TempActual extends StatelessWidget {
             ),
           );
         }
-        return CircularProgressIndicator();
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        );
       },
     );
   }
@@ -263,9 +268,9 @@ class _TempContenedor extends StatelessWidget {
       ),
       child: Column(
         children: [
-          if (tempActual! < 27 && fechaTemps == fechaActual)
+          if (tempActual! < TemperaturasValues.tempOptima && fechaTemps == fechaActual)
             _TempOptima(temp: tempActual)
-          else if (tempActual! >= 27 && fechaTemps == fechaActual)
+          else if (tempActual! >= TemperaturasValues.tempOptima && fechaTemps == fechaActual)
             _TempCritica(temp: tempActual)
           else if (fechaTemps != fechaActual)
             Container(
@@ -405,7 +410,7 @@ class _TempCritica extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               SizedBox(
-                width: _mediaSize.width * 0.04,
+                width: _mediaSize.width * 0.03,
               ),
               Center(
                 child: Image.asset(
@@ -433,7 +438,7 @@ class _StatusTemperatura extends StatelessWidget {
     final _mediaSize = MediaQuery.of(context).size;
     return Row(
       children: [
-        if (temperatura! < 27 && fechaTemps == fechaActual)
+        if (temperatura! < TemperaturasValues.tempOptima && fechaTemps == fechaActual)
           Column(
             children: [
               Row(
@@ -456,8 +461,8 @@ class _StatusTemperatura extends StatelessWidget {
               )
             ],
           )
-        else if (temperatura! >= 27 &&
-            temperatura! <= 28 &&
+        else if (temperatura! >= TemperaturasValues.tempOptima &&
+            temperatura! <= TemperaturasValues.tempCritica &&
             fechaTemps == fechaActual)
           Column(
             children: [
@@ -481,7 +486,7 @@ class _StatusTemperatura extends StatelessWidget {
               )
             ],
           )
-        else if (temperatura! > 28 && fechaTemps == fechaActual)
+        else if (temperatura! > TemperaturasValues.tempCritica && fechaTemps == fechaActual)
           Column(
             children: [
               Row(
