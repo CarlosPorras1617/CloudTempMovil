@@ -180,7 +180,7 @@ class _GetTempsFutureB extends StatelessWidget {
                               style: estilo,
                             ),
                             _DividerVertical(),
-                            if (tempsData.temperatura! <= TemperaturasValues.tempOptima)
+                            if (tempsData.temperatura! < TemperaturasValues.tempAlerta)
                               Text(
                                 'ÓPTIMA',
                                 style: TextStyle(

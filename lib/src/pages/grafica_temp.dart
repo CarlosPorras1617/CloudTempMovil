@@ -295,7 +295,7 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
                 itemBuilder: (BuildContext context, int i) {
                   //temps
                   final tempsData = temps[i];
-                  return (tempsData.fecha! == fechaActual && tempsData.temperatura! >= TemperaturasValues.tempOptima) ? Column(
+                  return (tempsData.fecha! == fechaActual && tempsData.temperatura! > TemperaturasValues.tempOptima) ? Column(
                     children: [
                       Divider(),
                       Row(
@@ -325,7 +325,7 @@ class _GetTempsAlertAndDanger extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
                             )
-                          else if (tempsData.temperatura! >= TemperaturasValues.tempCritica)
+                          else if (tempsData.temperatura! > TemperaturasValues.tempCritica)
                             Text(
                               'CRÍTICO',
                               style: TextStyle(

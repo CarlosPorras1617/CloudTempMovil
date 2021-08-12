@@ -189,7 +189,7 @@ class _BtnGrafTemp extends StatelessWidget {
                       height: 15,
                     ),
                     Text(
-                      'Grafica de Temperaturas',
+                      'Gráfica de Temperaturas',
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -268,9 +268,9 @@ class _TempContenedor extends StatelessWidget {
       ),
       child: Column(
         children: [
-          if (tempActual! < TemperaturasValues.tempOptima && fechaTemps == fechaActual)
+          if (tempActual! <= TemperaturasValues.tempOptima && fechaTemps == fechaActual)
             _TempOptima(temp: tempActual)
-          else if (tempActual! >= TemperaturasValues.tempOptima && fechaTemps == fechaActual)
+          else if (tempActual! > TemperaturasValues.tempOptima && fechaTemps == fechaActual)
             _TempCritica(temp: tempActual)
           else if (fechaTemps != fechaActual)
             Container(
@@ -438,7 +438,7 @@ class _StatusTemperatura extends StatelessWidget {
     final _mediaSize = MediaQuery.of(context).size;
     return Row(
       children: [
-        if (temperatura! < TemperaturasValues.tempOptima && fechaTemps == fechaActual)
+        if (temperatura! <= TemperaturasValues.tempOptima && fechaTemps == fechaActual)
           Column(
             children: [
               Row(
@@ -461,7 +461,7 @@ class _StatusTemperatura extends StatelessWidget {
               )
             ],
           )
-        else if (temperatura! >= TemperaturasValues.tempOptima &&
+        else if (temperatura! > TemperaturasValues.tempOptima &&
             temperatura! <= TemperaturasValues.tempCritica &&
             fechaTemps == fechaActual)
           Column(
