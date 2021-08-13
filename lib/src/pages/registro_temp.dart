@@ -95,29 +95,30 @@ class _Header extends StatelessWidget {
       TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
   @override
   Widget build(BuildContext context) {
+    final _mediaSize = MediaQuery.of(context).size;
     return Positioned(
-      top: 170.0,
+      top: _mediaSize.height * 0.22,
       child: Container(
-        margin: EdgeInsets.only(right: 2.0, left: 2.0),
-        width: 355.0,
+        margin: EdgeInsets.only(right: _mediaSize.width * 0.01, left: _mediaSize.width * 0.01),
+        width: _mediaSize.width * 0.99,
         child: Card(
           child: Row(
             //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: 15.0,
+                width: _mediaSize.width * 0.03,
               ),
               Text('Fecha', style: estilo),
               SizedBox(
-                width: 50.0,
+                width: _mediaSize.width * 0.15,
               ),
               Text('Hora', style: estilo),
               SizedBox(
-                width: 35.0,
+                width: _mediaSize.width * 0.13,
               ),
               Text('Temp', style: estilo),
               SizedBox(
-                width: 30.0,
+                width: _mediaSize.width * 0.09,
               ),
               Text('Estado', style: estilo)
             ],
